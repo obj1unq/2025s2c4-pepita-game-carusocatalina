@@ -1,12 +1,9 @@
 import comidas.*
 object pepita {
-	var position = game.at(3, 4)
+	var property position = game.at(3, 4) // game.at crea una posicion cada vez, es malo para el rendimiento
 	var energia = 100
 
-	method position(_position) {
-		position = _position
-	} 
-	method position() = position
+	method image() = "pepita.png" // se mueve pero es visual nomas, no afecta sus mensajes y acciones
 	method text() = "Aqui estoy"
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
