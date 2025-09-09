@@ -1,6 +1,10 @@
 import wollok.game.*
 import pepita.*
 
+// Framework   \    framework es inversion de control
+// Biblioteca  /    biblioteca tiene objectos que ya he desarrollado
+// Modelo
+
 program pepitaGame {
 	game.title("Pepita") 	//Valor por defecto "Wollok Game"
 	game.height(10) 		//valor por defecto 5
@@ -8,7 +12,8 @@ program pepitaGame {
 	game.cellSize(50) 		//valor por defecto 50
 	//search assets in assets folder, for example, for the background
 	//Valor por defecto game.ground("ground.png")
+	game.ground("suelo.png")
 	
-	//game.addVisual(pepita)
-	game.start()	
+	game.addVisualCharacter(pepita)
+	game.start() // super importante, va siempre al final, no lee lo que este debajo	
 }
