@@ -19,6 +19,8 @@ program pepitaGame {
 	game.ground("suelo.png")
 	game.addVisualCharacter(silvestre)
 	game.addVisualCharacter(pepita)
-	game.whenCollideDo(pepita, { elemento => pepita.resultado(elemento) }) //no hace lo que quiero
+	game.whenCollideDo(pepita, { elemento => 
+								elemento.resultado() 
+								pepita.redibujar()}) //no hace lo que quiero
 	game.start() // super importante, va siempre al final, no lee lo que este debajo	
 }

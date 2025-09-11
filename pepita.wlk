@@ -15,12 +15,11 @@ object pepita {
 	method volar(kms) {
 		energia = energia - 10 - kms 
 	}
-	method resultado(elem) {
-		return elem.resutado()
-	}
+	//method resultado(elem) {
+	//	return elem.resutado()
+	//}
 	method atrapada() {
 		return self.image("pepita-gris.png")
-		return self.position(silvestre.position())
 	}
 	method llegada() {
 		return self.image("pepita-grande.png")
