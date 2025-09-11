@@ -1,8 +1,9 @@
 import pepita.*
 object nido {
-    const property position = game.at(game.width(), game.height())
+    const property position = game.at(8, 8)
 
     method image() = "nido.png"
+    method resultado() = pepita.llegada()
 }
 
 object silvestre {
@@ -10,5 +11,7 @@ object silvestre {
     method position() = game.at(presa.position().x(), 1)
 
     method image() = "silvestre.png"
+    method resultado() = pepita.atrapada()
+
 }
 
