@@ -3,32 +3,21 @@ import pepita.*
 import extras.*
 import comidas.*
 import direcciones.*
-
+import niveles.*
 // Framework   \    framework es inversion de control
 // Biblioteca  /    biblioteca tiene objectos que ya he desarrollado
 // Modelo
 
 program pepitaGame {
 	game.title("Pepita") 	//Valor por defecto "Wollok Game"
-	game.addVisual(nido)
-	game.width(15) 			//valor por defecto 5
-	
-	game.height(15) 		//valor por defecto 5
+	game.width(10) 			//valor por defecto 5
+	game.height(10) 		//valor por defecto 5
 	
 	game.cellSize(50) 		//valor por defecto 50
 	//search assets in assets folder, for example, for the background
 	//Valor por defecto game.ground("ground.png")
-	game.ground("suelo.png")
-	game.addVisualCharacter(silvestre)
-	game.addVisualCharacter(pepita)
-	game.addVisual(manzana)
-    game.onTick(800, "gravedad", { pepita.caer(abajo) })
-
-	keyboard.up().onPressDo({pepita.mover(arriba)})
-	keyboard.down().onPressDo({pepita.mover(abajo)})
-	keyboard.left().onPressDo({pepita.mover(izquierda)})
-	keyboard.right().onPressDo({pepita.mover(derecha)})
-	keyboard.c().onPressDo({pepita.interactuarComidas()})
-	 
+	game.addVisual(nido)
+	game.boardGround("fondo.jpg")
+	nivel1.inicializar()
 	game.start() // super importante, va siempre al final, no lee lo que este debajo	
 }

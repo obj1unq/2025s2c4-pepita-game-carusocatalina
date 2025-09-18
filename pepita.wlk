@@ -4,7 +4,7 @@ import comidas.*
 import direcciones.*
 
 object pepita {
-	var property position = game.at(3, 4) // game.at crea una posicion cada vez, es malo para el rendimiento
+	var property position = game.at(0, 4) // game.at crea una posicion cada vez, es malo para el rendimiento
 	var energia = 100
 	const joules = 9
 
@@ -39,21 +39,20 @@ object pepita {
 	}
 	
 	method mover(direccion) {
-		if (self.puedeMover()){
+		if (self.puedeMover() || self.estaEnElBorde(direccion)){
 			self.volar(1)
 			position = direccion.siguiente(position)}
-			else {
-				self.perder()
-			}
+			else {self.perder()}
 	}
 	method perder(){
-		game.say(self, "Perdí!")
-		game.schedule( 2000, { game.stop() })
+		if (not self.puedeMover()){
+			game.say(self, "Perdí!")
+			game.schedule( 600, { game.stop() })}
 	}
-	//method gane(){
-	//	game.say(self, "Gané!")
-	//	game.schedule( 2000, { game.stop() })
-	//}
+	method gane(){
+		game.say(self, "Gané!")
+		game.schedule( 600, { game.stop() })
+	}
 
 	method puedeMover() {
 		return energia >= self.energiaNecesaria(1) && not self.estaSobre(silvestre)
@@ -66,10 +65,11 @@ object pepita {
 		comida.reaccionar()
 	}
 
-	method caer(direccion) {
-		position = direccion.siguiente(position)
+	method caerSiPuede() {
+		if (not self.estaEnElBorde(abajo))
+			{position = abajo.siguiente(position)}
 	}
 	
-	method estaEnElBorde() = position == arriba.borde() || position == abajo.borde() || position == izquierda.borde() || position == derecha.borde()
+	method estaEnElBorde(posicion) = position == posicion.esElBorde()
 
 }

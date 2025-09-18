@@ -1,9 +1,10 @@
 import wollok.game.*
+import pepita.*
 
 object manzana {
 	const base= 5
 	var madurez = 1
-	const property position = game.at (7, 4)
+	const property position = game.at (6, 4)
 
 	method image() = "manzana.png"
 	method energiaQueOtorga() {
@@ -15,6 +16,7 @@ object manzana {
 		//madurez += 1
 	}
 	method reaccionar() = game.removeVisual(self)
+	method reaccion() = pepita.interactuarComidas()
 
 }
 
@@ -26,6 +28,6 @@ object alpiste {
 		return 20
 	} 
 	method reaccionar() = game.removeVisual(self)// remover objeto, tal vez moverlo fuero del tablero?
-
+	method reaccion() = pepita.interactuarComidas()
 }
 
