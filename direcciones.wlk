@@ -2,7 +2,7 @@ import pepita.*
 import wollok.game.*
 // direcciones
 object izquierda {
-    method siguiente(posicion) = posicion.left()
+    method siguiente(posicion) = posicion.left(1)
     method esElBorde() = game.at(0, pepita.position().y())
 }
 object derecha {

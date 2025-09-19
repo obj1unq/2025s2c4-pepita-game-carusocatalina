@@ -1,11 +1,10 @@
 import pepita.*
 import wollok.game.*
 object nido {
-    const propietario = pepita
     const property position = game.at(8, 8)
 
     method image() = "nido.png"
-    method reaccion() = propietario.gane()
+    method colisionCon(personaje) = personaje.gane()
 }
 
 object silvestre {
@@ -13,7 +12,13 @@ object silvestre {
     method position() = game.at(presa.position().x(), 0)
 
     method image() = "silvestre.png"
-    method reaccion() = presa.perder()
+    method colisionCon(personaje) = personaje.perder()
+}
+
+object muro {
+    method position() = game.at(8,4)
+    method image() = "muro.png"
+    method colisionCon(personaje) = personaje.retrocede()
 }
 
 

@@ -2,6 +2,7 @@ import extras.*
 import wollok.game.*
 import comidas.*
 import direcciones.*
+import niveles.*
 
 object pepita {
 	var property position = game.at(0, 4) // game.at crea una posicion cada vez, es malo para el rendimiento
@@ -9,7 +10,10 @@ object pepita {
 	const joules = 9
 
 	method image() = "pepita" + self.resultado() + ".png"
-
+	method inicializar() {
+		energia = 100
+		position = game.at(0, 4)
+	}
 	method text() = "Energia: \n" + energia
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
@@ -39,7 +43,7 @@ object pepita {
 	}
 	
 	method mover(direccion) {
-		if (self.puedeMover() || self.estaEnElBorde(direccion)){
+		if (!self.estaEnElBorde(direccion) && self.puedeMover()){
 			self.volar(1)
 			position = direccion.siguiente(position)}
 			else {self.perder()}
@@ -47,15 +51,16 @@ object pepita {
 	method perder(){
 		if (not self.puedeMover()){
 			game.say(self, "Perdí!")
-			game.schedule( 600, { game.stop() })}
+			nivel1.perder()}
 	}
+
 	method gane(){
 		game.say(self, "Gané!")
 		game.schedule( 600, { game.stop() })
 	}
 
 	method puedeMover() {
-		return energia >= self.energiaNecesaria(1) && not self.estaSobre(silvestre)
+		return (energia >= self.energiaNecesaria(1)) && !self.estaSobre(silvestre)
 	}
 	method loQueHayAca() = game.uniqueCollider(self) // game.uniqueCollider devuelve el objeto que se le superpone a uno
 	
@@ -71,5 +76,7 @@ object pepita {
 	}
 	
 	method estaEnElBorde(posicion) = position == posicion.esElBorde()
-
+	method retrocede() {
+		position = game.at(position.x()-1, position.y())
+	}
 }

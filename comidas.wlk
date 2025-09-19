@@ -16,7 +16,7 @@ object manzana {
 		//madurez += 1
 	}
 	method reaccionar() = game.removeVisual(self)
-	method reaccion() = pepita.interactuarComidas()
+	method colisionCon(personaje) = personaje.interactuarComidas()
 
 }
 
@@ -28,6 +28,6 @@ object alpiste {
 		return 20
 	} 
 	method reaccionar() = game.removeVisual(self)// remover objeto, tal vez moverlo fuero del tablero?
-	method reaccion() = pepita.interactuarComidas()
+	method colisionCon(personaje) = personaje.interactuarComidas()
 }
 
