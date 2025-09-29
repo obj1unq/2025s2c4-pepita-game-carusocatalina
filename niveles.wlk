@@ -6,9 +6,9 @@ import direcciones.*
 
 object nivel1{
     method inicializar(){
-		const muros = (3..7).map {y => new Muro(position = game.at(3,y))}
+		const muros = (4..7).map {y => new Muro(position = game.at(3,y))}
 		muros.forEach {muro => game.addVisual(muro)}
-		const personajes = [ nido, silvestre, manzana, pepita ]
+		const personajes = [ nido, silvestre, new Manzana(), new Manzana(position = game.at(6,6), base = 10), pepita ]
 		personajes.forEach {el => game.addVisual(el)}
 		
         game.onTick(8000, "gravedad", { pepita.caerSiPuede() })
@@ -25,6 +25,7 @@ object nivel1{
 	
 	method perder(){
 		game.say(self, "Perdiste, presiona la R para reiniciar")
+		game.removeTickEvent.("gravedad")
 		keyboard.r().onPressDo {
 			game.clear()
 			self.inicializar()

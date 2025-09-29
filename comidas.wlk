@@ -1,7 +1,7 @@
 import wollok.game.*
 import pepita.*
 
-object manzana {
+class Manzana {
 	const base= 5
 	var madurez = 1
 	const property position = game.at (6, 4)
