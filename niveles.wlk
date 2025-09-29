@@ -6,12 +6,12 @@ import direcciones.*
 
 object nivel1{
     method inicializar(){
-    	game.addVisual(nido)
-		game.addVisual(muro)
-    	game.addVisual(silvestre)
-		game.addVisual(manzana)
+		const muros = (3..7).map {y => new Muro(position = game.at(3,y))}
+		muros.forEach {muro => game.addVisual(muro)}
+		const personajes = [ nido, silvestre, manzana, pepita ]
+		personajes.forEach {el => game.addVisual(el)}
+		
         game.onTick(8000, "gravedad", { pepita.caerSiPuede() })
-    	game.addVisual(pepita)
 
     	keyboard.up().onPressDo({pepita.mover(arriba)})
     	keyboard.down().onPressDo({pepita.mover(abajo)})
@@ -22,6 +22,7 @@ object nivel1{
 
         game.onCollideDo(pepita, {algo => algo.colisionCon(pepita)})
     }
+	
 	method perder(){
 		game.say(self, "Perdiste, presiona la R para reiniciar")
 		keyboard.r().onPressDo {

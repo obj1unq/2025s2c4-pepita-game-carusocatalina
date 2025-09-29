@@ -15,10 +15,10 @@ object silvestre {
     method colisionCon(personaje) = personaje.perder()
 }
 
-object muro {
-    method position() = game.at(8,4)
+class Muro {
+    var property position 
+    
     method image() = "muro.png"
     method colisionCon(personaje) = personaje.retrocede()
 }
-
 

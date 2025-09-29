@@ -15,10 +15,10 @@ describe "Tests de Pepita" {
 		game.addVisual(pepita)
 	}
  
-  test "pepita vuela arriba" {
-    pepita.mover(arriba)
-    assert.equals(game.at(3, 5), pepita.position())
-  }
+    test "pepita vuela arriba" {
+        pepita.mover(arriba)
+    	assert.equals(game.at(3, 5), pepita.position())
+    }
 
 
 	test "Pepita comienza con energia 100"{

@@ -8,6 +8,7 @@ object pepita {
 	var property position = game.at(0, 4) // game.at crea una posicion cada vez, es malo para el rendimiento
 	var energia = 100
 	const joules = 9
+	var ultimaDir = derecha
 
 	method image() = "pepita" + self.resultado() + ".png"
 	method inicializar() {
@@ -45,7 +46,8 @@ object pepita {
 	method mover(direccion) {
 		if (!self.estaEnElBorde(direccion) && self.puedeMover()){
 			self.volar(1)
-			position = direccion.siguiente(position)}
+			position = direccion.siguiente(position)
+			ultimaDir = direccion }
 			else {self.perder()}
 	}
 	method perder(){
@@ -77,6 +79,5 @@ object pepita {
 	
 	method estaEnElBorde(posicion) = position == posicion.esElBorde()
 	method retrocede() {
-		position = game.at(position.x()-1, position.y())
-	}
+		position = ultimaDir.anterior(position)}
 }
